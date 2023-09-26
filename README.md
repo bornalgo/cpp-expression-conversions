@@ -78,25 +78,6 @@ While infix notation is convenient for humans to read and write, it can be chall
 <details>
   <summary>Illustrate infix to prefix convesion</summary>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Title</title>
-    <style>
-        .boxed {
-        border: 3px solid #535353;
-        margin: 0px auto;
-        width: auto; /* Make width auto */
-        padding: 10px;
-        border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
-<div class="boxed">
-
 **Infix to Prefix Conversion Steps:**
 
 - Initialize an empty stack to hold operators and parentheses.
@@ -111,15 +92,11 @@ While infix notation is convenient for humans to read and write, it can be chall
 - After processing all characters in the reversed infix expression, pop any remaining operators from the stack and add them to the prefix expression.
 - Reverse the prefix expression. The reversed prefix expression is the correct prefix expression.
 
-</div>
-</body>
-</html>
-
 ```mermaid
-graph TD;
+flowchart LR;
 
 Start --> Initialize("Initialize empty stack\nand prefix expression")
-Initialize --> LoopStart("Start from the rightmost\ncharacter in infix experssion")
+Initialize --> LoopStart("Start from the rightmost\ncharacter in infix expression")
 subgraph Loop
 LoopStart --> Exists{"Does character exist?"}
 Exists --> |Yes| IsOperand{"Is it an operand?"}
@@ -127,11 +104,11 @@ IsOperand --> |Yes| Add("Add to prefix expression")
 Add --> Next("Next character from\nright of infix expression")
 IsOperand --> |No| IsClosing{"Is it ')'?"}
 IsClosing --> |Yes| Push("Push onto the stack")
-IsClosing --> |No| IsOpenning{"Is it '('?"}
+IsClosing --> |No| IsOpening{"Is it '('?"}
 Push --> Next
-IsOpenning --> |Yes| Pop1("Pop operators and add\nthem to prefix expression\nuntil ')' encountered")
+IsOpening --> |Yes| Pop1("Pop operators and add\nthem to prefix expression\nuntil ')' encountered")
 Pop1 --> Next
-IsOpenning --> |No| IsOperator{"Is it an operator?"}
+IsOpening --> |No| IsOperator{"Is it an operator?"}
 IsOperator --> |Yes| Check{"Is the stack\nempty or top\noperator has lower\nprecedence?"}
 Check --> |Yes| Push
 Check --> |No| Pop2("Pop operators and add\nthem to prefix expression\nuntil lower precedence or ')'")
@@ -155,7 +132,7 @@ Let's illustrate the process of converting an infix expression to a prefix expre
    2. `D`: Operand, add it to the prefix expression: `Stack: )`, `Prefix: "D"`
    3. `-`: Operator, push it onto the stack: `Stack: -)`, `Prefix: "D"`
    4. `C`: Operand, add it to the prefix expression: `Prefix: "CD"`
-   5. `(`: Openning parenthesis. Pop operators from the stack and add them to the prefix expression until a closing parenthesis is encountered: `Stack: empty`,    `Prefix: "CD-"`.
+   5. `(`: Opening parenthesis. Pop operators from the stack and add them to the prefix expression until a closing parenthesis is encountered: `Stack: empty`,    `Prefix: "CD-"`.
    6. `*`: Operator, push it onto the stack: `Stack: *`, `Prefix: "CD-"`.
    7. `B`: Operand, add it to the prefix expression: `Prefix: "CD-B"`.
    8. `+`: Operator, push it onto the stack while poping higher precedence operators: `Stack: +`, `Prefix: "CD-B*"`.
@@ -168,25 +145,6 @@ Let's illustrate the process of converting an infix expression to a prefix expre
 </details>
 <details>
   <summary>Illustrate infix to postfix convesion</summary>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Title</title>
-    <style>
-        .boxed {
-        border: 3px solid #535353;
-        margin: 0px auto;
-        width: auto; /* Make width auto */
-        padding: 10px;
-        border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
-<div class="boxed">
 
 **Infix to Postfix Conversion Steps:**
 
@@ -202,23 +160,19 @@ Let's illustrate the process of converting an infix expression to a prefix expre
 - After processing all characters in the infix expression, pop any remaining operators from the stack and add them to the postfix expression.
 - The postfix expression obtained is the result of the conversion.
 
-</div>
-</body>
-</html>
-
 ```mermaid
-graph TD;
+graph LR;
 
 Start --> Initialize("Initialize empty stack\nand postfix expression")
-Initialize --> LoopStart("Start from the leftmost\ncharacter in infix experssion")
+Initialize --> LoopStart("Start from the leftmost\ncharacter in infix expression")
 subgraph Loop
 LoopStart --> Exists{"Does character exist?"}
 Exists --> |Yes| IsOperand{"Is it an operand?"}
 IsOperand --> |Yes| Add("Add to postfix expression")
 Add --> Next("Next character from\nleft of infix expression")
-IsOperand --> |No| IsOpenning{"Is it '('?"}
-IsOpenning --> |Yes| Push("Push onto the stack")
-IsOpenning --> |No| IsClosing{"Is it ')'?"}
+IsOperand --> |No| IsOpening{"Is it '('?"}
+IsOpening --> |Yes| Push("Push onto the stack")
+IsOpening --> |No| IsClosing{"Is it ')'?"}
 Push --> Next
 IsClosing --> |Yes| Pop1("Pop operators and add\nthem to postfix expression\nuntil '(' encountered")
 Pop1 --> Next
@@ -285,24 +239,6 @@ In summary, prefix expressions are a notation where operators are placed before 
 
 <details>
   <summary>Illustrate prefix to infix convesion</summary>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Title</title>
-    <style>
-        .boxed {
-        border: 3px solid #535353;
-        margin: 0px auto;
-        width: auto; /* Make width auto */
-        padding: 10px;
-        border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
-<div class="boxed">
 
 **Prefix to Infix Conversion Steps:**
 
@@ -318,15 +254,11 @@ In summary, prefix expressions are a notation where operators are placed before 
 - After processing all characters in the prefix expression, the stack should contain the final infix expression.
 - Pop all the stack and add them to the infix expression.
 
-</div>
-</body>
-</html>
-
 ```mermaid
-graph TD;
+graph LR;
 
 Start --> Initialize("Initialize empty stack\nand infix expression")
-Initialize --> LoopStart("Start from the rightmost\ncharacter in prefix experssion")
+Initialize --> LoopStart("Start from the rightmost\ncharacter in prefix expression")
 subgraph Loop
 LoopStart --> Exists{"Does character exist?"}
 Exists --> |Yes| IsOperand{"Is it an operand?"}
@@ -334,6 +266,7 @@ IsOperand --> |Yes| Push("Push onto the stack")
 Push --> Next("Next character from\nright of prefix expression")
 IsOperand --> |No| IsOperator{"Is it an operator?"}
 IsOperator --> |Yes| Add("Pop and concatenate last two from stack\n with the operator in between,\n enclose the string in parentheses and\npush back onto the stack")
+Add --> Next
 IsOperator --> |No| Next
 Next --> Exists
 end
@@ -355,31 +288,13 @@ Let's illustrate the process of converting a prefix expression to an infix expre
    5. `A`: Operand, push it onto the stack: `Stack: "A""B""(C - D)"`, `Infix: ""`
    6. `*`: Operator, pop two operands from the stack (`A` and `B`), apply the operator, and push the result back onto the stack: `Stack: "(A * B)""(C - D)"`, `Infix: ""`
    7. `+`: Operator, pop two operands from the stack (`(A * B)` and `(C - D)`), apply the operator, and push the result back onto the stack: `Stack: "(A * B) + (C - D)"`, `Infix: ""`
-- Pop the stack and add it to the posfix expression: `Stack: empty`, `Infix: "(A * B) + (C - D)"`
+- Pop the stack and add it to the postfix expression: `Stack: empty`, `Infix: "(A * B) + (C - D)"`
 - The infix notation is `(A * B) + (C - D)`, which represents the prefix expression `+*AB-CD` in infix notation.
 
 </details>
 
 <details>
   <summary>Illustrate prefix to postfix convesion</summary>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Title</title>
-    <style>
-        .boxed {
-        border: 3px solid #535353;
-        margin: 0px auto;
-        width: auto; /* Make width auto */
-        padding: 10px;
-        border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
-<div class="boxed">
 
 **Prefix to Postfix Conversion Steps:**
 
@@ -394,15 +309,11 @@ Let's illustrate the process of converting a prefix expression to an infix expre
 - After processing all characters in the prefix expression, the stack should contain the final postfix expression.
 - Pop all the stack and add them to the postfix expression.
 
-</div>
-</body>
-</html>
-
 ```mermaid
-graph TD;
+graph LR;
 
 Start --> Initialize("Initialize empty stack\nand postfix expression")
-Initialize --> LoopStart("Start from the rightmost\ncharacter in prefix experssion")
+Initialize --> LoopStart("Start from the rightmost\ncharacter in prefix expression")
 subgraph Loop
 LoopStart --> Exists{"Does character exist?"}
 Exists --> |Yes| IsOperand{"Is it an operand?"}
@@ -410,6 +321,7 @@ IsOperand --> |Yes| Push("Push onto the stack")
 Push --> Next("Next character from\nright of prefix expression")
 IsOperand --> |No| IsOperator{"Is it an operator?"}
 IsOperator --> |Yes| Add("Pop and concatenate last two from stack,\n append the operator and\npush back onto the stack")
+Add --> Next
 IsOperator --> |No| Next
 Next --> Exists
 end
@@ -431,7 +343,7 @@ Let's illustrate the process of converting a prefix expression to a postfix expr
    5. `A`: Operand, push it onto the stack: `Stack: "A""B""CD-"`, `Postfix: ""`
    6. `*`: Operator, pop two operands from the stack (`A` and `B`), apply the operator, and push the result back onto the stack: `Stack: "AB*""CD-"`, `Postfix: ""`
    7. `+`: Operator, pop two operands from the stack (`AB*` and `CD-`), apply the operator, and push the result back onto the stack: `Stack: "AB*CD-+"`, `Postfix: ""`
-- Pop the stack and add it to the posfix expression: `Stack: empty`, `Postfix: "AB*CD-+"`
+- Pop the stack and add it to the postfix expression: `Stack: empty`, `Postfix: "AB*CD-+"`
 - The postfix notation is `AB*CD-+`, which represents the prefix expression `+*AB-CD` in postfix notation.
 
 </details>
@@ -460,28 +372,10 @@ Postfix expressions, also known as Reverse Polish Notation (RPN), are a mathemat
    - Multiplication: "5 6 *" (equivalent to infix "5 * 6")
    - Division: "10 2 /" (equivalent to infix "10 / 2")
 
-In summary, postfix expressions are a mathematical notation where operators are placed after operands, allowing for unambiguous representation of mathematical   expressions without the need for parentheses. They are used in certain programming languages, calculator applications, and stack-based evaluation systems, making   them a convenient choice for implementing mathematical functions and parsing algorithms.
+In summary, postfix expressions are mathematical notations where operators are placed after operands, allowing for unambiguous representation of mathematical   expressions without the need for parentheses. They are used in certain programming languages, calculator applications, and stack-based evaluation systems, making   them a convenient choice for implementing mathematical functions and parsing algorithms.
 
 <details>
   <summary>Illustrate postfix to infix convesion</summary>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Title</title>
-    <style>
-        .boxed {
-        border: 3px solid #535353;
-        margin: 0px auto;
-        width: auto; /* Make width auto */
-        padding: 10px;
-        border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
-<div class="boxed">
 
 **Postfix to Infix Conversion Steps:**
 
@@ -497,15 +391,11 @@ In summary, postfix expressions are a mathematical notation where operators are 
 - After processing all characters in the postfix expression, the stack should contain the final infix expression.
 - Pop all the stack and add them to the infix expression.
 
-</div>
-</body>
-</html>
-
 ```mermaid
-graph TD;
+graph LR;
 
 Start --> Initialize("Initialize empty stack\nand infix expression")
-Initialize --> LoopStart("Start from the rightmost\ncharacter in postfix experssion")
+Initialize --> LoopStart("Start from the rightmost\ncharacter in postfix expression")
 subgraph Loop
 LoopStart --> Exists{"Does character exist?"}
 Exists --> |Yes| IsOperand{"Is it an operand?"}
@@ -513,6 +403,7 @@ IsOperand --> |Yes| Push("Push onto the stack")
 Push --> Next("Next character from\nright of postfix expression")
 IsOperand --> |No| IsOperator{"Is it an operator?"}
 IsOperator --> |Yes| Add("Pop and concatenate last two from stack\n with the operator in between,\n enclose the string in parentheses and\npush back onto the stack")
+Add --> Next
 IsOperator --> |No| Next
 Next --> Exists
 end
@@ -540,31 +431,13 @@ Let's illustrate the process of converting a postfix expression to an infix expr
    11. `/`: Operator, pop two operands from the stack (`G` and `F`), apply the operator, and push the result back onto the stack: `Stack: "(F / G)""(D - E)""A + (B * C)"`, `Infix: ""`
    12. `+`: Operator, pop two operands from the stack (`(F / G)` and `(D - E)`), apply the operator, and push the result back onto the stack: `Stack: "((D - E) + (F / G))""A + (B * C)"`, `Infix: ""`
    11. `/`: Operator, pop two operands from the stack (`((D - E) + (F / G))` and `A + (B * C)`), apply the operator, and push the result back onto the stack: `Stack: "(A + (B * C)) / ((D - E) + (F / G))"`, `Infix: ""`
-- Pop the stack and add it to the posfix expression: `Stack: empty`, `Infix: "(A + (B * C)) / ((D - E) + (F / G))"`
+- Pop the stack and add it to the postfix expression: `Stack: empty`, `Infix: "(A + (B * C)) / ((D - E) + (F / G))"`
 - The infix notation is `(A + (B * C)) / ((D - E) + (F / G))`, which represents the postfix expression `ABC*+DE-FG/+/` in infix notation.
 
 </details>
 
 <details>
   <summary>Illustrate postfix to prefix convesion</summary>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Title</title>
-    <style>
-        .boxed {
-        border: 3px solid #535353;
-        margin: 0px auto;
-        width: auto; /* Make width auto */
-        padding: 10px;
-        border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
-<div class="boxed">
 
 **Postfix to Prefix Conversion Steps:**
 
@@ -579,15 +452,11 @@ Let's illustrate the process of converting a postfix expression to an infix expr
 - After processing all characters in the postfix expression, the stack should contain the final prefix expression.
 - Pop all the stack and add them to the prefix expression.
 
-</div>
-</body>
-</html>
-
 ```mermaid
-graph TD;
+graph LR;
 
 Start --> Initialize("Initialize empty stack\nand prefix expression")
-Initialize --> LoopStart("Start from the leftmost\ncharacter in postfix experssion")
+Initialize --> LoopStart("Start from the leftmost\ncharacter in postfix expression")
 subgraph Loop
 LoopStart --> Exists{"Does character exist?"}
 Exists --> |Yes| IsOperand{"Is it an operand?"}
@@ -595,6 +464,7 @@ IsOperand --> |Yes| Push("Push onto the stack")
 Push --> Next("Next character from\nleft of postfix expression")
 IsOperand --> |No| IsOperator{"Is it an operator?"}
 IsOperator --> |Yes| Add("Pop and concatenate last two from stack,\n prepend the operator and\npush back onto the stack")
+Add --> Next
 IsOperator --> |No| Next
 Next --> Exists
 end
@@ -622,7 +492,7 @@ Let's illustrate the process of converting a postfix expression to a prefix expr
    11. `/`: Operator, pop two operands from the stack (`G` and `F`), apply the operator, and push the result back onto the stack: `Stack: "/FG""-DE""+A*BC"`, `Prefix: ""`
    12. `+`: Operator, pop two operands from the stack (`/FG` and `-DE`), apply the operator, and push the result back onto the stack: `Stack: "+-DE/FG""+A*BC"`, `Prefix: ""`
    11. `/`: Operator, pop two operands from the stack (`G+-DE/FG` and `+A*BC`), apply the operator, and push the result back onto the stack: `Stack: "/+A*BC+-DE/FG"`, `Prefix: ""`
-- Pop the stack and add it to the posfix expression: `Stack: empty`, `Prefix: "/+A*BC+-DE/FG"`
+- Pop the stack and add it to the postfix expression: `Stack: empty`, `Prefix: "/+A*BC+-DE/FG"`
 - The prefix notation is `/+A*BC+-DE/FG`, which represents the postfix expression `ABC*+DE-FG/+/` in prefix notation.
 
 </details>
